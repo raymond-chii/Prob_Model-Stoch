@@ -1,6 +1,7 @@
 import random 
-# Question 1 
 
+#### Question 1 ####
+print("QUESTION 1:")
 trials = 10000
 count = 0 # the number of successful rolls
 
@@ -14,6 +15,8 @@ prob = count/trials
 
 print("part a: The probability of rolling a 18 is", prob)
 
+
+count = 0
 for _ in range(trials):
     max_score = 0
     
@@ -79,4 +82,48 @@ prob = average_count / trials
 
 print("part d: The probability of the fun method and to be average is", prob)
 
+
+
+
+#### Question 2 ####
+print("\n\nQUESTION 2:")
+
+
+averageTrollHits = (1+2+3+4)/4
+# print("part a: The average number of Troll hits is", averageTrollHits)
+averageFireballHits = (1+2)/2+(1+2)/2
+# print("part a: The average number of fireball hits is", averageFireballHits)
+count = 0
+for _ in range(trials):
+    d1 = random.randint(1, 2)
+    d2 = random.randint(1, 2)
+    if d1 + d2 >= 3:
+        count += 1
+
+prob = count / trials
+
+print("part a: The average number of Troll hit points is %d, \nand the average number of fireball hits is %d" % (averageTrollHits, averageFireballHits))
+print("and the probability of getting at least 3 hits is", prob)
+
+fireballPmf = 1/2*1 + 1/2*2 + 1/2*1 + 1/2*2
+trollPmf = 1/4*1 + 1/4*2 + 1/4*3 + 1/4*4
+print("part b: The PMF of Fireball is %d, and the PMF of Troll is %d" % (fireballPmf, trollPmf))
+
+count = 0
+for _ in range(trials):
+   wizD1 = random.randint(1, 2)
+   wizD2 = random.randint(1, 2)
+
+   trollD1 = random.randint(1, 4)
+   trollD2 = random.randint(1, 4)
+   trollD3 = random.randint(1, 4)
+   trollD4 = random.randint(1, 4)
+   trollD5 = random.randint(1, 4)
+   trollD6 = random.randint(1, 4)
+   
+   if (wizD1 + wizD2) >= max(trollD1, trollD2, trollD3, trollD4, trollD5, trollD6):
+      count += 1
+        
+prob = count / trials
+print("part c: The probability of the Wizard slaying all is", prob)
 
