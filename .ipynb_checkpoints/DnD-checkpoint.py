@@ -1,5 +1,4 @@
 import random 
-import matplotlib.pyplot as plt
 
 
 
@@ -92,54 +91,24 @@ print("part d: The probability of the fun method and to be average is", prob)
 print("\n\nQUESTION 2:")
 
 
-averageTrollHits = 0
+averageTrollHits = (1+2+3+4)/4
 # print("part a: The average number of Troll hits is", averageTrollHits)
-averageFireballHits = 0
+averageFireballHits = (1+2)/2+(1+2)/2
 # print("part a: The average number of fireball hits is", averageFireballHits)
 count = 0
 for _ in range(trials):
     d1 = random.randint(1, 2)
     d2 = random.randint(1, 2)
-
-    trollD1 = random.randint(1, 4)
-    fireballDamage = d1 + d2
-    
-    averageFireballHits += fireballDamage
-    averageTrollHits += trollD1
-
     if d1 + d2 > 3:
         count += 1
 
 prob = count / trials
 
-print("part a: The average number of Troll hit points is %d, \nand the average number of fireball hits is %d" % (averageTrollHits/trials, averageFireballHits/trials))
+print("part a: The average number of Troll hit points is %d, \nand the average number of fireball hits is %d" % (averageTrollHits, averageFireballHits))
 print("and the probability of getting at least 3 hits is", prob)
 
 fireballPmf = 1/2*1 + 1/2*2 + 1/2*1 + 1/2*2
 trollPmf = 1/4*1 + 1/4*2 + 1/4*3 + 1/4*4
-
-x = [1, 2, 3, 4]
-y = [1/4] * len(x) 
-plt.stem(x, y)
-plt.xlabel('Outcome')
-plt.ylabel('Probability')
-plt.title('Probability Mass Function - Troll')
-plt.legend()
-plt.show()
-
-fireball_pmf = [0.25, 0.5, 0.25] 
-x_values_fireball = [2, 3, 4]
-plt.stem(x_values_fireball, fireball_pmf)
-plt.xlabel('Outcome')
-plt.ylabel('Probability')
-plt.title('Probability Mass Function - Fireball')
-plt.legend()
-
-# Show the plot
-plt.show()
-
-
-
 print("part b: The PMF of Fireball is %d, and the PMF of Troll is %d" % (fireballPmf, trollPmf))
 
 count = 0
@@ -175,21 +144,3 @@ partdprob = sumofHP/dcount
 print("part c: The probability of the Wizard slaying all is", prob)
 print("part d: The probability of remain one troll alive of the expected HP is", partdprob)
 
-
-damage = 0 
-
-for _ in range(trials):
-    sword = random.randint(1, 6) + random.randint(1, 6)
-    hammer = random.randint(1, 4)
-
-    if random.randint(1, 20) > 11:
-        damage += sword
-        if random.randint(1, 20) > 11:
-            damage += hammer
-
-
-print("part e: The expected damage is", damage/trials)
-print("part f: The probability of Keene recieves a tenure is")
-
-
-   
