@@ -1,0 +1,54 @@
+clc
+clear 
+close all
+
+
+%% Question 1
+
+
+sample = 1000; 
+lambda = [0.2, 0.4, 0.6, 0.8, 1];
+sigma = [0.2, 0.4, 0.6, 0.8, 1];
+
+% preallocate exp
+mse_exp = zeros(sample, length(lambda));
+bias_exp = zeros(sample, length(lambda));
+var_exp = zeros(sample, length(lambda));
+
+
+for i = 1:length(lambda)
+    for n = 1:sample
+        % Generate exponential random variables
+        exp_samples = exprnd(1/lambda(i), n, 1);
+        lambda_ml = 1/mean(exp_samples);
+        
+        % Compute MSE, bias, and variance for exponential distribution
+        mse_exp(n, i) = (lambda_ml - lambda(i))^2;
+        bias_exp(n, i) = lambda_ml - lambda(i);
+        var_exp(n, i) = var(exp_samples) / n;
+    end
+end
+
+% preallocate ray
+mse_ray = zeros(sample, length(sigma));
+bias_ray = zeros(sample, length(sigma));
+var_ray = zeros(sample, length(sigma));
+
+
+for i = 1:length(sigma)
+    for n = 1:sample
+        % Generate Rayleigh random variables
+        ray_samples = raylrnd(sigma(i), n, 1);
+        sigma_ml = sqrt(mean(ray_samples.^2) / 2);
+        
+        % Compute MSE, bias, and variance for Rayleigh distribution
+        mse_ray(n, i) = (sigma_ml - sigma(i))^2;
+        bias_ray(n, i) = sigma_ml - sigma(i);
+        var_ray(n, i) = var(ray_samples) / (2*n);
+    end
+end
+
+
+%% Question 2
+
+load('data.mat'); 
